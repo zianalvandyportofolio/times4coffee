@@ -1,0 +1,12 @@
+{
+  "order_id": "coffee_ord_001",
+  "user_id": "usr_90213",
+  "items": [
+    { "menu_id": "item_espresso", "quantity": 2, "notes": "Less sugar" }
+  ],
+  "total_price": 50000,
+  "payment_status": "PAID",
+  "order_status": "PREPARING",
+  "idempotency_key": "idem-coffee-12398a12b",
+  "created_at": "2026-06-15T23:10:00Z"
+}

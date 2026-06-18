@@ -1,0 +1,13 @@
+{
+  "task_id": "joki_task_772",
+  "user_id": "usr_90213",
+  "subject": "Struktur Data & Algoritma",
+  "deadline": "2026-06-20T12:00:00Z",
+  "requirements": "Implementasi Binary Search Tree dalam Bahasa C++",
+  "price": 350000,
+  "payment_status": "PAID",
+  "work_status": "IN_PROGRESS",
+  "attachment_url": "https://storage.djokibae.id/requirements/task_772.pdf",
+  "idempotency_key": "idem-joki-998124add",
+  "created_at": "2026-06-15T23:05:00Z"
+}

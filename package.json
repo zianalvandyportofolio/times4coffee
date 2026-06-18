@@ -1,0 +1,20 @@
+{
+  "name": "payflow-ecosystem",
+  "version": "1.0.0",
+  "description": "Portofolio times4coffee dan djokibae",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "setup:tw": "tailwindcss init -p",
+    "dev": "vite"
+  },
+  "keywords": [],
+  "author": "Erlangga",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^3.4.1",
+    "vite": "^8.0.16"
+  }
+}

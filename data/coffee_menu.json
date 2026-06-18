@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Iced Matcha Latte",
+    "category": "Non-Coffee",
+    "price": 15000,
+    "image": "🍵",
+    "image_url": "./images/matcha.jpg",
+    "desc": "Menggunakan grade ceremonial dari Uji, Kyoto. Memberikan rasa umami yang lembut dengan profil rasa nutty dan akhir rasa yang manis alami."
+  },
+  {
+    "id": 2,
+    "name": "Iced Aren Latte",
+    "category": "Coffee",
+    "price": 12000,
+    "image": "☕",
+    "image_url": "./images/kopiaren.jpg",
+    "desc": "House blend 50% Arabica Gayo (Aceh) untuk profil buah & 50% Robusta Temanggung (Jawa Tengah) untuk body yang bold, dipadukan dengan gula aren organik."
+  },
+  {
+    "id": 3,
+    "name": "Iced Chocolate",
+    "category": "Non-Coffee",
+    "price": 14000,
+    "image": "🍫",
+    "image_url": "./images/chocolate.jpg",
+    "desc": "100% Pure Dark Chocolate asal Malaysia dengan profil rasa intens, sedikit pahit, dan tekstur yang sangat velvet."
+  },
+  {
+    "id": 4,
+    "name": "Butter Croissant",
+    "category": "Pastry",
+    "price": 25000,
+    "image": "🥐",
+    "image_url": "./images/croissant.png",
+    "desc": "Dibuat dengan teknik laminasi 72 jam menggunakan French AOP Butter. Renyah di luar, airy di dalam."
+  },
+  {
+    "id": 5,
+    "name": "Single Origin V60",
+    "category": "Coffee",
+    "price": 35000,
+    "image": "🫖",
+    "image_url": "./images/v60.jpg",
+    "desc": "Biji kopi Arabica dari Ethiopia Yirgacheffe. Karakter floral, citrus, dan teh yang sangat bersih."
+  }
+]
