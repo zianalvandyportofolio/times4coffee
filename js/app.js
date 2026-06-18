@@ -34,7 +34,7 @@ document.addEventListener("alpine:init", () => {
       });
 
       try {
-        const response = await fetch("/data/coffee_menu.json");
+        const response = await fetch("./data/coffee_menu.json");
         this.menu = await response.json();
       } catch (e) {
         console.error(e);
