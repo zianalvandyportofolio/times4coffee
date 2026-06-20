@@ -27,10 +27,11 @@
 
   <body class="antialiased font-sans" x-data="cartSystem">
     <nav
-      x-data="{ 
+      <nav
+  x-data="{ 
     activeSection: 'home', 
     isMobileMenuOpen: false,
-    cartCount: 0, // Ini nanti sinkronkan dengan data cart kamu
+    cartCount: 0, 
     navLinks: [
       { name: 'Home', href: '#home' },
       { name: 'Menu', href: '#menu' },
@@ -38,11 +39,26 @@
       { name: 'About', href: '#about' }
     ]
   }"
-      x-init="
-    // Pastikan cartCount update otomatis
-    $watch('cart', value => cartCount = cart.reduce((sum, i) => sum + i.quantity, 0))
+  x-init="
+    // 1. Logic untuk mengupdate jumlah cart (cartCount)
+    $watch('cart', value => cartCount = cart.reduce((sum, i) => sum + i.quantity, 0));
+
+    // 2. Logic untuk mendeteksi scroll (scroll-spy)
+    window.addEventListener('scroll', () => {
+      const sections = ['home', 'menu', 'location', 'about'];
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Deteksi apakah section sedang berada di area pandang
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            activeSection = sectionId;
+          }
+        }
+      }
+    });
   "
-      class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl bg-[#FEFAF0]/70 backdrop-blur-lg border border-[#542916]/10 rounded-full shadow-xl transition-all duration-300 py-3 px-6 flex justify-between items-center"
+      class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl bg-[#FEFAF0]/80 backdrop-blur-lg border border-[#542916]/10 rounded-full shadow-xl transition-all duration-300 py-3 px-6 flex justify-between items-center"
     >
       <div
         class="flex items-center gap-2 cursor-pointer"
@@ -178,13 +194,13 @@
 
       <div class="relative z-10 flex flex-col items-center text-center">
         <h1
-          class="text-6xl md:text-8xl font-bold tracking-tighter mb-6 text-[#FEFAF0] [text-shadow:_0_4px_8px_rgba(0,0,0,0.5)]"
+          class="text-5xl md:text-8xl font-bold tracking-tighter mb-6 text-[#FEFAF0] [text-shadow:_0_4px_8px_rgba(0,0,0,0.5)]"
         >
           Crafting Moments
         </h1>
 
         <p
-          class="text-xl text-[#FEFAF0] max-w-xl mb-10 [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)]"
+          class="text-lg text-[#FEFAF0] max-w-xl mb-10 [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)]"
         >
           Artisan coffee experience in the heart of Bandung. Precision, passion,
           and perfection in every cup.
