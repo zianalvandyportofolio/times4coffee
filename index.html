@@ -174,7 +174,7 @@
   <img
     src="images/homebg.webp"
     alt="Background"
-    class="absolute top-0 left-0 w-full h-[165vh] md:h-screen object-cover object-center md:object-top z-0 pointer-events-none"
+    class="absolute top-0 left-0 w-full h-[162vh] md:h-screen object-cover object-center md:object-top z-0 pointer-events-none"
   />
 
   <div class="relative z-10 flex flex-col items-center text-center">
@@ -200,78 +200,63 @@
 </section>
 
     <section
-      id="menu"
-      class="relative z-10 mt12 pt-4 pb-24 px-6 max-w-5xl mx-auto bg-[#FEFAF0] scroll-mt-20"
-    >
-      <header class="mb-16 space-y-6">
-        <h2 class="text-5xl font-bold tracking-tighter text-[#542916]">
-          Artisan Menu
-        </h2>
+  id="menu"
+  class="relative z-10 mt10 pt-8 md:pt-12 pb-24 px-6 max-w-5xl mx-auto bg-[#FEFAF0] scroll-mt-24 md:scroll-mt-24"
+>
+  <header class="mb-16 space-y-6">
+    <h2 class="text-5xl font-bold tracking-tighter text-[#542916]">
+      Artisan Menu
+    </h2>
 
-        <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-          <template x-for="cat in categories" :key="cat">
-            <button
-              @click="activeCategory = cat"
-              :class="activeCategory === cat ? 'bg-[#542916] text-[#FEFAF0]' : 'bg-[#542916]/10 text-[#542916] hover:bg-[#542916]/20'"
-              class="px-6 py-2.5 rounded-full text-sm font-medium transition-all"
-              x-text="cat"
-            ></button>
-          </template>
-        </div>
-      </header>
-
-      <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <template x-for="item in filteredMenu" :key="item.id">
-          <div
-            @click="viewProduct(item)"
-            class="group cursor-pointer bg-[#FEFAF0] rounded-[2rem] border border-[#542916]/10 shadow-[0_20px_40px_-15px_rgba(84,41,22,0.3)] hover:shadow-[0_30px_60px_-15px_rgba(84,41,22,0.4)] transition-all duration-500 hover:-translate-y-2 overflow-hidden"
-          >
-            <div class="relative w-full h-48 overflow-hidden">
-              <img
-                :src="item.image_url"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div
-                class="absolute bottom-0 w-full bg-[#542916]/80 py-2 text-center backdrop-blur-sm"
-              >
-                <p class="text-[10px] font-medium text-[#FEFAF0]">
-                  Gratis pengantaran sampai 16/06/2026
-                </p>
-              </div>
-            </div>
-
-            <div class="p-6">
-              <div class="flex justify-between items-start mb-4">
-                <h3
-                  class="text-lg font-bold text-[#542916] leading-tight flex-1 mr-4"
-                  x-text="item.name"
-                ></h3>
-
-                <span
-                  class="text-lg font-bold text-[#542916] whitespace-nowrap"
-                  x-text="(item.price / 1000) + 'K'"
-                ></span>
-              </div>
-
-              <div class="flex gap-2 flex-wrap">
-                <span
-                  class="px-3 py-1 rounded-full text-[10px] font-bold bg-[#542916] text-[#FEFAF0]"
-                  x-text="item.category"
-                ></span>
-
-                <template x-if="item.category !== 'Pastry'">
-                  <span
-                    class="px-3 py-1 rounded-full text-[10px] font-bold bg-[#542916]/10 text-[#542916]"
-                  >
-                    Ice Cubes
-                  </span>
-                </template>
-              </div>
-            </div>
-          </div>
+    <div class="w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] md:[mask-image:none]">
+      <div class="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
+        <template x-for="cat in categories" :key="cat">
+          <button
+            @click="activeCategory = cat"
+            :class="activeCategory === cat ? 'bg-[#542916] text-[#FEFAF0]' : 'bg-[#542916]/10 text-[#542916] hover:bg-[#542916]/20'"
+            class="px-6 py-2.5 rounded-full text-sm font-medium transition-all whitespace-nowrap"
+            x-text="cat"
+          ></button>
         </template>
-      </main>
-    </section>
+      </div>
+    </div>
+  </header>
+
+  <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <template x-for="item in filteredMenu" :key="item.id">
+      <div
+        @click="viewProduct(item)"
+        class="group cursor-pointer bg-[#FEFAF0] rounded-[2rem] border border-[#542916]/10 shadow-[0_20px_40px_-15px_rgba(84,41,22,0.3)] hover:shadow-[0_30px_60px_-15px_rgba(84,41,22,0.4)] transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+      >
+        <div class="relative w-full h-48 overflow-hidden">
+          <img
+            :src="item.image_url"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div class="absolute bottom-0 w-full bg-[#542916]/80 py-2 text-center backdrop-blur-sm">
+            <p class="text-[10px] font-medium text-[#FEFAF0]">
+              Gratis pengantaran sampai 16/06/2026
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-lg font-bold text-[#542916] leading-tight flex-1 mr-4" x-text="item.name"></h3>
+            <span class="text-lg font-bold text-[#542916] whitespace-nowrap" x-text="(item.price / 1000) + 'K'"></span>
+          </div>
+
+          <div class="flex gap-2 flex-wrap">
+            <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-[#542916] text-[#FEFAF0]" x-text="item.category"></span>
+            <template x-if="item.category !== 'Pastry'">
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-[#542916]/10 text-[#542916]">Ice Cubes</span>
+            </template>
+          </div>
+        </div>
+      </div>
+    </template>
+  </main>
+</section>
 
     <section id="location" class="py-16 px-6 bg-[#542916]/5 mt-16 scroll-mt-20">
       <div class="max-w-5xl mx-auto">
