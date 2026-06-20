@@ -183,35 +183,36 @@
     </nav>
 
     <section
-      id="home"
-      class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 bg-[#FEFAF0] overflow-hidden"
+  id="home"
+  class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 bg-[#FEFAF0] overflow-hidden"
+>
+  <img
+    src="images/homebg.webp"
+    alt="Background"
+    class="absolute top-0 left-0 w-full h-[165vh] md:h-screen object-cover object-center md:object-top z-0 pointer-events-none"
+  />
+
+  <div class="relative z-10 flex flex-col items-center text-center">
+    <h1
+      class="text-5xl md:text-8xl font-bold tracking-tighter mb-6 text-[#FEFAF0] [text-shadow:_0_4px_8px_rgba(0,0,0,0.5)]"
     >
-      <img
-        src="images/homebg.webp"
-        alt="Background"
-        class="absolute top-0 left-0 w-full h-[120vh] object-cover object-top z-0 pointer-events-none"
-      />
+      Crafting Moments
+    </h1>
 
-      <div class="relative z-10 flex flex-col items-center text-center">
-        <h1
-          class="text-5xl md:text-8xl font-bold tracking-tighter mb-6 text-[#FEFAF0] [text-shadow:_0_4px_8px_rgba(0,0,0,0.5)]"
-        >
-          Crafting Moments
-        </h1>
+    <p
+      class="text-lg md:text-xl text-[#FEFAF0] max-w-xl mb-10 [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)]"
+    >
+      Artisan coffee experience in the heart of Bandung. Precision, passion,
+      and perfection in every cup.
+    </p>
 
-        <p
-          class="text-lg text-[#FEFAF0] max-w-xl mb-10 [text-shadow:_0_2px_4px_rgba(0,0,0,0.5)]"
-        >
-          Artisan coffee experience in the heart of Bandung. Precision, passion,
-          and perfection in every cup.
-        </p>
-        <a
-          href="#menu"
-          class="bg-[#542916] text-[#FEFAF0] px-8 py-4 rounded-full font-bold hover:scale-105 transition"
-          >Explore Menu</a
-        >
-      </div>
-    </section>
+    <a
+      href="#menu"
+      class="bg-[#542916] text-[#FEFAF0] px-5 py-2.5 md:px-8 md:py-4 rounded-full font-bold hover:scale-105 transition"
+      >Explore Menu</a
+    >
+  </div>
+</section>
 
     <section
       id="menu"
