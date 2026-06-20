@@ -27,23 +27,23 @@
 
   <body class="antialiased font-sans" x-data="cartSystem">
     <nav
-      x-data="{ activeSection: 'home' }"
+      x-data="{ 
+    activeSection: 'home', 
+    isMobileMenuOpen: false,
+    cartCount: 0, // Ini nanti sinkronkan dengan data cart kamu
+    navLinks: [
+      { name: 'Home', href: '#home' },
+      { name: 'Menu', href: '#menu' },
+      { name: 'Location', href: '#location' },
+      { name: 'About', href: '#about' }
+    ]
+  }"
       x-init="
-    window.addEventListener('scroll', () => {
-      const sections = ['home', 'menu', 'location', 'about'];
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        const rect = element.getBoundingClientRect();
-        // Cek jika elemen berada di posisi viewport atas
-        if (rect.top >= -100 && rect.top <= 200) {
-          activeSection = section;
-        }
-      }
-    })
+    // Pastikan cartCount update otomatis
+    $watch('cart', value => cartCount = cart.reduce((sum, i) => sum + i.quantity, 0))
   "
-      class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-3xl bg-[#FEFAF0]/70 backdrop-blur-lg border border-[#542916]/10 rounded-full shadow-2xl transition-all duration-300 py-3 px-6 flex justify-between items-center"
+      class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl bg-[#FEFAF0]/70 backdrop-blur-lg border border-[#542916]/10 rounded-full shadow-xl transition-all duration-300 py-3 px-6 flex justify-between items-center"
     >
-      <!-- Logo & Video -->
       <div
         class="flex items-center gap-2 cursor-pointer"
         @click="window.scrollTo({top: 0, behavior: 'smooth'})"
@@ -59,39 +59,111 @@
         <span class="font-bold text-lg tracking-tighter">times4coffee</span>
       </div>
 
-      <!-- Menu Links (Auto Active) -->
       <div class="hidden md:flex gap-6 text-sm font-semibold">
-        <a
-          href="#home"
-          :class="activeSection === 'home' ? 'text-[#542916]' : 'text-[#542916]/50'"
-          >Home</a
-        >
-        <a
-          href="#menu"
-          :class="activeSection === 'menu' ? 'text-[#542916]' : 'text-[#542916]/50'"
-          >Menu</a
-        >
-        <a
-          href="#location"
-          :class="activeSection === 'location' ? 'text-[#542916]' : 'text-[#542916]/50'"
-          >Location</a
-        >
-        <a
-          href="#about"
-          :class="activeSection === 'about' ? 'text-[#542916]' : 'text-[#542916]/50'"
-          >About</a
-        >
+        <template x-for="link in navLinks" :key="link.name">
+          <a
+            :href="link.href"
+            class="transition-colors duration-200"
+            :class="activeSection === link.href.substring(1) ? 'text-[#542916]' : 'text-[#542916]/50 hover:text-[#542916]'"
+            x-text="link.name"
+          ></a>
+        </template>
       </div>
 
-      <!-- Cart Button -->
+      <div class="hidden md:flex items-center gap-3">
+        <button
+          @click="isCartOpen = true"
+          class="relative p-2 hover:bg-[#542916]/10 rounded-full transition"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+            ></path>
+          </svg>
+          <span
+            class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center"
+            x-text="cart.reduce((sum, i) => sum + i.quantity, 0)"
+            >0</span
+          >
+        </button>
+        <button class="text-sm font-semibold hover:text-[#542916]/70">
+          Login
+        </button>
+        <button
+          class="text-sm font-semibold bg-[#542916] text-[#FEFAF0] px-4 py-2 rounded-full hover:opacity-90 transition"
+        >
+          Sign Up
+        </button>
+      </div>
+
       <button
-        @click="isCartOpen = true"
-        class="text-sm border border-[#542916] hover:bg-[#542916] hover:text-[#FEFAF0] px-4 py-1.5 rounded-full transition"
+        @click="isMobileMenuOpen = !isMobileMenuOpen"
+        class="md:hidden p-2 flex flex-col gap-1.5 z-50"
       >
-        Cart (<span x-text="cart.reduce((sum, i) => sum + i.quantity, 0)"
-          >0</span
-        >)
+        <span
+          class="w-6 h-0.5 bg-[#542916] transition-all duration-300"
+          :class="isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''"
+        ></span>
+        <span
+          class="w-6 h-0.5 bg-[#542916] transition-all duration-300"
+          :class="isMobileMenuOpen ? 'opacity-0' : ''"
+        ></span>
+        <span
+          class="w-6 h-0.5 bg-[#542916] transition-all duration-300"
+          :class="isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''"
+        ></span>
       </button>
+
+      <div
+        x-show="isMobileMenuOpen"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 translate-y-[-20px]"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        class="fixed top-20 left-4 right-4 bg-[#FEFAF0] border border-[#542916]/10 p-6 rounded-3xl shadow-2xl flex flex-col gap-4 md:hidden"
+      >
+        <template x-for="link in navLinks" :key="link.name">
+          <a
+            :href="link.href"
+            @click="isMobileMenuOpen = false"
+            class="text-xl font-bold text-[#542916] border-b border-[#542916]/5 pb-2 transition-transform duration-200 hover:translate-x-2 block"
+            x-text="link.name"
+          ></a>
+        </template>
+
+        <div class="flex flex-col gap-3 mt-4">
+          <button
+            @click="isCartOpen = true; isMobileMenuOpen = false"
+            class="flex items-center justify-between w-full py-3 px-4 bg-[#542916]/5 rounded-full font-bold hover:translate-x-2 transition-transform duration-200"
+          >
+            Cart
+            <span
+              class="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full"
+              x-text="cart.reduce((sum, i) => sum + i.quantity, 0)"
+              >0</span
+            >
+          </button>
+          <div class="grid grid-cols-2 gap-3">
+            <button
+              class="py-3 border border-[#542916] rounded-full font-bold hover:bg-[#542916]/5"
+            >
+              Login
+            </button>
+            <button
+              class="py-3 bg-[#542916] text-[#FEFAF0] rounded-full font-bold hover:opacity-90"
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <section
